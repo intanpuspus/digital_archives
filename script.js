@@ -1,10 +1,15 @@
 const memories = [
   {
-    date: "AUG 12, 2026",
-    title: "slow mornings",
-    note: "coffee, an open window, and nowhere to be.",
-    image: "images/coffee.jpg",
-    alt: "Coffee on a quiet morning"
+    date: "OCT 1, 2026",
+    title: "bday feasttts",
+    note: "getting older and wiser, with these little blessings.",
+    images: ["images/flower.jpeg",
+             "images/sashimi.jpeg",
+             "images/cake.jpeg",
+             "images/sushi.jpeg",
+             "images/essel.jpeg"
+    ],
+    alt: "A little happiness on Oct 1st"
   },
   {
     date: "AUG 19, 2026",
