@@ -127,16 +127,24 @@ function createPhotoCard(item) {
   const card = document.createElement("article");
   card.className = "memory-card";
 
-  const imageFrame = document.createElement("div");
-  imageFrame.className = "memory-image";
+  const photoGrid = document.createElement("div");
+  photoGrid.className = "memory-photos";
 
-  const image = document.createElement("img");
-  image.src = item.image;
-  image.alt = item.alt;
-  image.loading = "lazy";
+  // Support both the new images array
+  // and the old single-image property.
+  const photos = item.images || [item.image];
 
-  image.addEventListener("error", () => {
-    image.alt = "Image unavailable: " + item.alt;
+  photos.filter(Boolean).forEach((src, index) => {
+    const frame = document.createElement("div");
+    frame.className = "memory-image";
+
+    const image = document.createElement("img");
+    image.src = src;
+    image.alt = `${item.alt || item.title} — photo ${index + 1}`;
+    image.loading = "lazy";
+
+    frame.append(image);
+    photoGrid.append(frame);
   });
 
   const date = document.createElement("p");
@@ -150,8 +158,7 @@ function createPhotoCard(item) {
   note.className = "memory-note";
   note.textContent = item.note;
 
-  imageFrame.append(image);
-  card.append(imageFrame, date, title, note);
+  card.append(photoGrid, date, title, note);
 
   return card;
 }
