@@ -665,3 +665,27 @@ a:focus-visible {
     aspect-ratio: 5 / 4;
   }
 }
+
+.memory-photos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.memory-photos .memory-image {
+  min-width: 0;
+  padding: 3px;
+}
+
+.memory-photos .memory-image img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+@media (max-width: 400px) {
+  .memory-photos {
+    gap: 3px;
+  }
+}
+
