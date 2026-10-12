@@ -9,7 +9,7 @@ const memories = [
              "images/sushi.jpeg",
              "images/essel.jpeg"
     ],
-    alt: "A little happiness on Oct 1st"
+    alt: "A little happiness to start my 26 journey"
   },
   {
     date: "AUG 19, 2026",
