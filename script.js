@@ -47,14 +47,32 @@ const notes = [
 
 const things = [
   {
-    date: "AUG 19, 2026",
-    title: "a little flower",
-    body: "a flower i saw on my way home. a small detail that made the day feel special."
+    date: "JULY 4, 2026",
+    title: "Museum Tekstil Jakarta",
+    note: "visual learning various types of Batik and created my own Batik there.",
+    images: ["images/batik1.jpeg",
+             "images/batik2.jpeg",
+             "images/batik3.jpeg",
+             "images/batik4.jpeg",
+             "images/batik5.jpeg",
+             "images/batik6.jpeg",
+             "images/batik7.jpeg",
+             "images/batik8.jpeg",
+             "images/batik9.jpeg"
+    ],
+    alt: "another interactive museum to try"
   },
   {
-    date: "AUG 27, 2026",
-    title: "a place i found",
-    body: "a quiet corner, a cup of tea, and a few hours to myself."
+    date: "OCT 1, 2026",
+    title: "bday feasttts",
+    note: "getting older and wiser, with these little blessings.",
+    images: ["images/flower.jpeg",
+             "images/sashimi.jpeg",
+             "images/cake.jpeg",
+             "images/sushi.jpeg",
+             "images/essel.jpeg"
+    ],
+    alt: "A little happiness to start my 26 journey"
   }
 ];
 
@@ -92,7 +110,7 @@ const sections = {
     label: "FILE 003 / SMALL DISCOVERIES",
     title: "Collected Things",
     description: "little objects, places, and fragments.",
-    type: "notes",
+    type: "photos",
     items: things
   },
 
