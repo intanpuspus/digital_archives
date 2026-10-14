@@ -12,31 +12,53 @@ const memories = [
     alt: "A little happiness to start my 26 journey"
   },
   {
-    date: "AUG 19, 2026",
-    title: "something blooming",
-    note: "i brought home a little piece of the afternoon.",
-    image: "images/flowers.jpg",
-    alt: "Flowers collected on an afternoon"
+    date: "SEPT 26, 2026",
+    title: "making kimchii",
+    note: "got my hand messy and learned how to make kimchi at Korean Education Center Indonesia.",
+    images: ["images/kimchi1.jpeg",
+             "images/kimchi2.jpeg",
+             "images/kimchi3.jpeg",
+             "images/kimchi4.jpeg",
+             "images/kimchi5.jpeg",
+             "images/kimchi6.jpeg"
+    ],
+    alt: "A little taste of Korean Culture thru Kimchi"
   },
   {
-    date: "SEP 06, 2026",
-    title: "the sky was pink",
-    note: "one of those things you wish you could keep.",
-    image: "images/sunset.jpg",
-    alt: "A pink sunset"
+    date: "JUNE 18, 2026",
+    title: "First Timer: Tennis Coaching",
+    note: "not really good with ball sports but enjoyed this one.",
+    images: ["images/tennis1.jpeg",
+            "images/tennis2.jpeg",
+            "images/tennis3.jpeg"
+    ],
+    alt: "Checked list of new sport this year."
+  },
+  {
+    date: "FEB 11-14, 2026",
+    title: "Outing #2: Mekarians go to Bali",
+    note: "kind of stress release activity with colleagues.",
+    images: ["images/bali1.jpeg",
+            "images/bali2.jpeg",
+            "images/bali3.jpeg",
+            "images/bali4.jpeg",
+            "images/bali5.jpeg",
+            "images/bali6.jpeg"
+    ],
+    alt: "Kinda mixed feelings to go on vacation with people we met at work."
   }
 ];
 
 const notes = [
   {
-    date: "AUG 15, 2026",
-    title: "a thought for today",
-    body: "maybe a good life is made of ordinary days that we learn to notice."
+    date: "OCT 14, 2026",
+    title: "a small reminder from one of my colleagues",
+    body: "try to loosen your grip on work, don't let the grudge hold you and always remember to not shit where you eat."
   },
   {
-    date: "AUG 22, 2026",
-    title: "a small reminder",
-    body: "you don't have to make every moment meaningful. sometimes being there is enough."
+    date: "OCT 9, 2026",
+    title: "little things to be grateful for",
+    body: "everyone has their dark story in life, yet they are still doing good to others and never make excuses using it."
   },
   {
     date: "SEP 02, 2026",
@@ -255,19 +277,117 @@ function renderHome() {
   activeSection = null;
 
   archiveLabel.textContent = "FROM MY COLLECTION";
-  archiveTitle.textContent = "A few things I've kept";
-  archiveDescription.textContent =
-    "fragments of ordinary days, saved for later.";
+archiveTitle.textContent = "A few things I've kept";
+archiveDescription.textContent =
+  "fragments of ordinary days, saved for later.";
 
-  grid.className = "memory-grid";
-  grid.replaceChildren();
+grid.className = "memory-slideshow";
+grid.replaceChildren();
 
-  memories.forEach((item) => {
-    grid.append(createPhotoCard(item));
+let currentSlide = 0;
+let autoplayTimer;
+
+const slides = memories.map((item) => {
+  const card = createPhotoCard(item);
+  card.classList.add("memory-slide");
+  return card;
+});
+
+const track = document.createElement("div");
+track.className = "memory-slides-track";
+
+slides.forEach((slide, index) => {
+  slide.classList.toggle("is-active", index === 0);
+  slide.setAttribute("aria-hidden", index !== 0);
+  track.appendChild(slide);
+});
+
+const controls = document.createElement("div");
+controls.className = "slideshow-controls";
+
+const previousButton = document.createElement("button");
+previousButton.className = "slide-button";
+previousButton.textContent = "←";
+previousButton.setAttribute("aria-label", "Previous slide");
+
+const counter = document.createElement("span");
+counter.className = "slide-counter";
+
+const nextButton = document.createElement("button");
+nextButton.className = "slide-button";
+nextButton.textContent = "→";
+nextButton.setAttribute("aria-label", "Next slide");
+
+const progress = document.createElement("div");
+progress.className = "slideshow-progress";
+
+const progressBar = document.createElement("div");
+progressBar.className = "slideshow-progress-bar";
+progress.appendChild(progressBar);
+
+controls.append(previousButton, counter, nextButton);
+grid.append(track, controls, progress);
+
+function showSlide(index) {
+  if (!slides.length) return;
+
+  currentSlide = (index + slides.length) % slides.length;
+
+  slides.forEach((slide, i) => {
+    const active = i === currentSlide;
+    slide.classList.toggle("is-active", active);
+    slide.setAttribute("aria-hidden", String(!active));
   });
 
-  emptyMessage.hidden = true;
-  closeSection.hidden = true;
+  counter.textContent =
+    `${String(currentSlide + 1).padStart(2, "0")} / ` +
+    `${String(slides.length).padStart(2, "0")}`;
+
+  progressBar.style.width =
+    `${((currentSlide + 1) / slides.length) * 100}%`;
+}
+
+function startAutoplay() {
+  clearInterval(autoplayTimer);
+
+  if (slides.length > 1) {
+    autoplayTimer = setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 5000);
+  }
+}
+
+previousButton.addEventListener("click", () => {
+  showSlide(currentSlide - 1);
+  startAutoplay();
+});
+
+nextButton.addEventListener("click", () => {
+  showSlide(currentSlide + 1);
+  startAutoplay();
+});
+
+grid.addEventListener("mouseenter", () => {
+  clearInterval(autoplayTimer);
+});
+
+grid.addEventListener("mouseleave", startAutoplay);
+
+grid.addEventListener("focusin", () => {
+  clearInterval(autoplayTimer);
+});
+
+grid.addEventListener("focusout", (event) => {
+  if (!grid.contains(event.relatedTarget)) {
+    startAutoplay();
+  }
+});
+
+showSlide(0);
+startAutoplay();
+
+emptyMessage.hidden = memories.length > 0;
+closeSection.hidden = true;
 
   document.querySelectorAll(".pocket").forEach((pocket) => {
     pocket.setAttribute("aria-pressed", "false");
