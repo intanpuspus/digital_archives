@@ -52,18 +52,23 @@ const memories = [
 const notes = [
   {
     date: "OCT 14, 2026",
+    title: "a sudden-thought based on experience",
+    body: "trust your intuition. your body always know it first before something happens."
+  },
+  {
+    date: "OCT 14, 2026",
     title: "a small reminder from one of my colleagues",
     body: "try to loosen your grip on work, don't let the grudge hold you and always remember to not shit where you eat."
   },
   {
     date: "OCT 9, 2026",
-    title: "little things to be grateful for",
+    title: "little things I noticed after a deep convo with friends",
     body: "everyone has their dark story in life, yet they are still doing good to others and never make excuses using it."
   },
   {
-    date: "SEP 02, 2026",
+    date: "OCT 04, 2026",
     title: "things i want to remember",
-    body: "the warm afternoon light, the long conversation, and the walk home."
+    body: "the art of showing up and appreciate things, even just the small one."
   }
 ];
 
@@ -85,16 +90,16 @@ const things = [
     alt: "another interactive museum to try"
   },
   {
-    date: "OCT 1, 2026",
-    title: "bday feasttts",
-    note: "getting older and wiser, with these little blessings.",
-    images: ["images/flower.jpeg",
-             "images/sashimi.jpeg",
-             "images/cake.jpeg",
-             "images/sushi.jpeg",
-             "images/essel.jpeg"
+    date: "JAN 16, 2026",
+    title: "Gedung Candra Naya",
+    note: "A fascinating Chinese Cultural Heritage at Glodok, Jakarta Barat.",
+    images: ["images/candranaya1.jpeg",
+             "images/candranaya2.jpeg",
+             "images/candranaya3.jpeg",
+             "images/candranaya4.jpeg",
+             "images/candranaya5.jpeg"
     ],
-    alt: "A little happiness to start my 26 journey"
+    alt: "a must visit place while exploring Glodok"
   }
 ];
 
