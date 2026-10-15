@@ -51,6 +51,11 @@ const memories = [
 
 const notes = [
   {
+    date: "OCT 15, 2026",
+    title: "one of my friend's life motto",
+    body: "nothing worth having comes easy."
+  },
+  {
     date: "OCT 14, 2026",
     title: "a sudden-thought based on experience",
     body: "trust your intuition. your body always know it first before something happens."
@@ -105,14 +110,19 @@ const things = [
 
 const dateCollections = [
   {
-    date: "AUGUST 2026",
-    title: "a slower month",
+    date: "OCTOBER 2026",
+    title: "---on going",
     body: "slow mornings, flowers on the way home, and a little more time for myself."
   },
   {
     date: "SEPTEMBER 2026",
+    title: "little bit better",
+    body: "learned new things and started to hanging out with my beloved ones."
+  }
+  {
+    date: "AUGUST 2026",
     title: "little transitions",
-    body: "pink skies, weekend walks, and moments worth keeping."
+    body: "hold onto a ray of hope."
   }
 ];
 
