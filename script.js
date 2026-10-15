@@ -118,7 +118,7 @@ const dateCollections = [
     date: "SEPTEMBER 2026",
     title: "little bit better",
     body: "learned new things and started to hanging out with my beloved ones."
-  }
+  },
   {
     date: "AUGUST 2026",
     title: "little transitions",
